@@ -7,8 +7,8 @@ import (
 	"strconv"
 )
 
-func ReadCsvFileInput() (column1 []uint32, column2 []uint32) {
-	f, err := os.Open("../../cmd/day1/input.csv")
+func ReadCsvFileInput(path string) (column1 []uint32, column2 []uint32) {
+	f, err := os.Open(path)
 	if err != nil {
 		log.Fatal("Unable to read input file ", err)
 	}

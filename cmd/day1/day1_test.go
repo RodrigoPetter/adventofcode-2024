@@ -34,7 +34,7 @@ func TestDistancesShouldHandleNegativeDistances(t *testing.T) {
 
 func TestDistancesQuestion(t *testing.T) {
 	//given
-	list1, list2 := csv.ReadCsvFileInput()
+	list1, list2 := csv.ReadCsvFileInput("../../cmd/day1/input.csv")
 	var expected uint32 = 1873376
 	//when
 	result := Distances(list1, list2)
@@ -59,7 +59,7 @@ func TestSimilarityExample(t *testing.T) {
 
 func TestSimilarityQuestion(t *testing.T) {
 	//given
-	list1, list2 := csv.ReadCsvFileInput()
+	list1, list2 := csv.ReadCsvFileInput("../../cmd/day1/input.csv")
 	var expected uint32 = 18997088
 	//when
 	result := Similarity(list1, list2)
