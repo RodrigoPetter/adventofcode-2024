@@ -34,7 +34,7 @@ func TestDistancesShouldHandleNegativeDistances(t *testing.T) {
 
 func TestDistancesQuestion(t *testing.T) {
 	//given
-	list1, list2 := csv.ReadCsvFileInput("../../cmd/day1/input.csv")
+	list1, list2 := getColumns(csv.ReadCsvFileInput("../../cmd/day1/input.csv"))
 	var expected uint32 = 1873376
 	//when
 	result := Distances(list1, list2)
@@ -59,7 +59,7 @@ func TestSimilarityExample(t *testing.T) {
 
 func TestSimilarityQuestion(t *testing.T) {
 	//given
-	list1, list2 := csv.ReadCsvFileInput("../../cmd/day1/input.csv")
+	list1, list2 := getColumns(csv.ReadCsvFileInput("../../cmd/day1/input.csv"))
 	var expected uint32 = 18997088
 	//when
 	result := Similarity(list1, list2)
@@ -67,4 +67,21 @@ func TestSimilarityQuestion(t *testing.T) {
 	if expected != result {
 		t.Errorf(`Expected %v but got %v`, expected, result)
 	}
+}
+
+func getColumns(data [][]uint32) (column1 []uint32, column2 []uint32) {
+	firstColumn := make([]uint32, len(data))
+	secondColumn := make([]uint32, len(data))
+
+	// Extract columns
+	for i, row := range data {
+		if len(row) > 0 {
+			firstColumn[i] = row[0]
+		}
+		if len(row) > 1 {
+			secondColumn[i] = row[1]
+		}
+	}
+
+	return firstColumn, secondColumn
 }

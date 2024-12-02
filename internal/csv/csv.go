@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-func ReadCsvFileInput(path string) (column1 []uint32, column2 []uint32) {
+func ReadCsvFileInput(path string) (cells [][]uint32) {
 	f, err := os.Open(path)
 	if err != nil {
 		log.Fatal("Unable to read input file ", err)
@@ -21,16 +21,18 @@ func ReadCsvFileInput(path string) (column1 []uint32, column2 []uint32) {
 		log.Fatal("Unable to parse file as CSV", err)
 	}
 
-	var firstColumn, secondColumn []uint32
+	var numberCells [][]uint32
 	for rowNumber, row := range records {
-		i1, err1 := strconv.ParseUint(row[0], 10, 32)
-		i2, err2 := strconv.ParseUint(row[1], 10, 32)
-		if err1 != nil || err2 != nil {
-			log.Fatalf(`Invalid uint32 at csv row %v`, rowNumber)
+		cells := make([]uint32, len(row))
+		for columnNumber, cellValue := range row {
+			i, _ := strconv.ParseUint(cellValue, 10, 32)
+			if err != nil {
+				log.Fatalf(`Invalid uint32 at csv row %v and collumn %v.`, rowNumber, columnNumber)
+			}
+			cells[columnNumber] = uint32(i)
 		}
-		firstColumn = append(firstColumn, uint32(i1))
-		secondColumn = append(secondColumn, uint32(i2))
+		numberCells = append(numberCells, cells)
 	}
 
-	return firstColumn, secondColumn
+	return numberCells
 }
