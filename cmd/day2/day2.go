@@ -48,14 +48,6 @@ func checkRowSafety(row []uint32, problemDampener int16) bool {
 					}
 				}
 				return false
-
-				// if checkRowSafety(removeElement(row, ri-1), 0) {
-				// 	return true
-				// }
-				// if checkRowSafety(removeElement(row, ri), 0) {
-				// 	return true
-				// }
-				// return false
 			}
 		}
 	}
