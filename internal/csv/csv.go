@@ -16,6 +16,7 @@ func ReadCsvFileInput(path string) (cells [][]uint32) {
 
 	csvReader := csv.NewReader(f)
 	csvReader.Comma = ' '
+	csvReader.FieldsPerRecord = -1
 	records, err := csvReader.ReadAll()
 	if err != nil {
 		log.Fatal("Unable to parse file as CSV", err)
