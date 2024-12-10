@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-func ReadCsvFileInput(path string) (cells [][]uint32) {
+func ReadCsvFileInput(path string, comma rune) (cells [][]uint32) {
 	f, err := os.Open(path)
 	if err != nil {
 		log.Fatal("Unable to read input file ", err)
@@ -15,7 +15,7 @@ func ReadCsvFileInput(path string) (cells [][]uint32) {
 	defer f.Close()
 
 	csvReader := csv.NewReader(f)
-	csvReader.Comma = ' '
+	csvReader.Comma = comma
 	csvReader.FieldsPerRecord = -1
 	records, err := csvReader.ReadAll()
 	if err != nil {

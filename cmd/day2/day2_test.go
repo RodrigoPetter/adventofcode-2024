@@ -34,7 +34,7 @@ func TestSafetyExample(t *testing.T) {
 
 func TestSafetyQuestion(t *testing.T) {
 	//given
-	report := csv.ReadCsvFileInput("../../cmd/day2/input.csv")
+	report := csv.ReadCsvFileInput("../../cmd/day2/input.csv", ' ')
 	expected := 598
 	//when
 	result := CountSafeReports(ReportSafety(report, 0))
@@ -72,7 +72,7 @@ func TestProblemDampenerExample(t *testing.T) {
 
 func TestProblemDampenerQuestion(t *testing.T) {
 	//given
-	report := csv.ReadCsvFileInput("../../cmd/day2/input.csv")
+	report := csv.ReadCsvFileInput("../../cmd/day2/input.csv", ' ')
 	expected := 634
 	//when
 	result := CountSafeReports(ReportSafety(report, 1))
